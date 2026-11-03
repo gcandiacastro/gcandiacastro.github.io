@@ -1,5 +1,10 @@
 const CASA='<path d="M50 125V70l70-45 70 45v55z"/>';
 const DIB={
+diseno:'<path d="M30 20h180v110H30z"/><path d="M30 42h180M60 20v110"/><path class="ac" d="M85 62h95v48H85zM85 86h40M125 62v48"/><path d="M85 120h95M85 116v8M180 116v8"/>',
+sanitaria:'<path d="M15 45h210"/><path d="M15 45q30-10 60 0t60 0 60 0 30-4" stroke-dasharray="4 5"/><path d="M95 45v70h50V45"/><path class="ac" stroke-width="5" d="M15 105h80M145 112h80"/><path class="ac" d="M40 94l12 11-12 11M178 101l12 11-12 11"/>',
+urbanizacion:'<path d="M15 60h210M15 92h210M90 15v120M155 15v120" stroke-width="3"/><path d="M28 18h50v30H28zM103 18h40v30h-40zM168 18h50v30h-50zM28 104h50v30H28zM168 104h50v30h-50z"/><path class="ac" stroke-dasharray="8 6" d="M15 76h210M122 15v120"/>',
+habitabilidad:CASA+'<path d="M80 125V95h24v30"/><path class="ac" stroke-width="4" d="M122 88l14 14 26-30"/>',
+visita:'<path d="M35 125h170"/><path d="M50 125V85l40-26 40 26v40z"/><path class="ac" stroke-width="3" d="M170 100s-30-26-30-50a30 30 0 0160 0c0 24-30 50-30 50z"/><circle class="ac" cx="170" cy="50" r="10" stroke-width="3"/>',
 calculo:'<path d="M45 125V30h150v95M45 62h150M45 94h150M120 30v95"/><path d="M45 125h150" stroke-width="4"/><path class="ac" d="M20 62h20M14 94h26M28 30h12M36 57l5 5-5 5M34 89l6 5-6 5"/><circle cx="45" cy="16" r="8"/><circle cx="120" cy="16" r="8"/><circle cx="195" cy="16" r="8"/>',
 dom:'<path d="M30 125V75l55-35 55 35v50z"/><path d="M72 125V95h26v30"/><path class="ac" stroke-dasharray="7 5" d="M140 125h75V80h-75"/><path class="ac" d="M178 92v22M167 103h22"/>',
 galpon:'<path d="M30 125V60l90-35 90 35v65"/><path d="M30 60h180M60 49v11M90 37v23M120 25v35M150 37v23M180 49v11M30 60l30-11M60 60l30-23M90 60l30-35M150 60l-30-35M180 60l-30-23M210 60l-30-11"/><path class="ac" d="M15 125h210" stroke-width="4"/>',

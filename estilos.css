@@ -82,3 +82,6 @@ section.bot{padding:0}.op.sec:hover{background:var(--papel);color:var(--tinta)}
 .nota a,.chk a{color:var(--azul)}
 .barra nav a:focus-visible,.marca:focus-visible{outline-color:var(--senal)}
 @media(max-width:860px){.dato b{font-size:27px;white-space:nowrap}.dato span{font-size:13px}.pres .envase{gap:12px}}
+.servicio{background:var(--blanco)}.promesas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:4px solid var(--senal);margin-bottom:24px}.promesas div{padding:18px 20px 6px 0}.promesas h3{font-size:28px;font-weight:600;margin-bottom:4px}.promesas p{margin:0;color:var(--gris)}
+.btn.fb{background:#1877f2;border-color:#1877f2;color:#fff}.btn.fb:hover{filter:brightness(1.08)}
+@media(max-width:860px){.promesas{grid-template-columns:minmax(0,1fr)}}

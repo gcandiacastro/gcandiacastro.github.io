@@ -2,11 +2,11 @@
 /* Asistente guiado: no usa IA ni claves. Reúne los datos y arma el mensaje de WhatsApp. */
 (function(){
 const FLUJO={
- inicio:{t:"Hola, soy el asistente de GCC Ingeniería. ¿Qué necesitas?",o:[["Tasar una propiedad","tas"],["Cálculo o informe estructural","ing"],["Inspección de obra","ito"],["Pagar una cotización","pag"],["Tengo una pregunta","faq"]]},
+ inicio:{t:"Hola, soy el asistente de GCC Ingeniería. ¿Qué necesitas?",o:[["Tasar una propiedad","tas"],["Informe de habitabilidad","prop","Servicio: Informe de habitabilidad"],["Visita técnica","prop","Servicio: Visita técnica"],["Proyecto de ingeniería","ing"],["Inspección técnica","ito"],["Pagar una cotización","pag"],["Tengo una pregunta","faq"]]},
  tas:{t:"¿Para qué necesitas la tasación?",g:"Servicio: Tasación. Motivo",o:["Compra o venta","Crédito","Herencia o partición","Juicio","Otro"],s:"prop"},
  prop:{t:"¿Qué tipo de propiedad es?",g:"Propiedad",o:["Casa o departamento","Terreno urbano","Parcela o predio rural","Local, oficina o bodega"],s:"comuna"},
- ing:{t:"¿Qué necesitas?",g:"Servicio: Ingeniería",o:["Cálculo de vivienda","Regularizar ampliación","Galpón o plataforma","Informe de estabilidad","Revisión de proyecto"],s:"comuna"},
- ito:{t:"¿Qué tipo de obra es?",g:"Servicio: ITO. Obra",o:["Vivienda","Edificación","Obra civil","Otra"],s:"comuna"},
+ ing:{t:"¿Qué necesitas?",g:"Servicio: Ingeniería",o:["Memoria de cálculo","Diseño de ingeniería","Ingeniería sanitaria","Urbanización","Galpón o plataforma","Vivienda o regularización"],s:"comuna"},
+ ito:{t:"¿Qué tipo de obra es?",g:"Servicio: Inspección técnica. Obra",o:["Industrial","Edificación","Obra civil","Otra"],s:"comuna"},
  comuna:{t:"¿En qué comuna está?",g:"Comuna",in:1,s:"nombre"},
  nombre:{t:"¿Cuál es tu nombre?",g:"Nombre",in:1,s:"fin"},
  faq:{t:"Elige tu pregunta.",o:[["¿Cuánto cuesta?","f1"],["¿Dónde atienden?","f2"],["¿Quién firma?","f3"],["¿Qué antecedentes necesito?","f4"]]},
@@ -27,7 +27,7 @@ function ir(k){actual=k;O.innerHTML="";F.hidden=true;
  const n=FLUJO[k];dice(n.t,"b");
  if(n.in){F.hidden=false;I.value="";I.focus();return}
  if(!n.o){op("Hablar con Germán",()=>wa("Hola Germán, tengo una consulta."));op("Otra pregunta",()=>ir("faq"),"sec");return}
- n.o.forEach(x=>{const[e,d]=Array.isArray(x)?x:[x,null];op(e,()=>{dice(e,"u");if(n.g)datos.push(n.g+": "+e);ir(d||n.s)})});
+ n.o.forEach(x=>{const[e,d,y]=Array.isArray(x)?x:[x,null];op(e,()=>{dice(e,"u");if(y)datos.push(y);if(n.g)datos.push(n.g+": "+e);ir(d||n.s)})});
 }
 function fin(){const m="Hola Germán, quiero cotizar.\n"+datos.join("\n");dice("Listo. Revisa tu mensaje y envíalo por WhatsApp.","b");dice(m,"r");op("Enviar por WhatsApp",()=>wa(m));op("Empezar de nuevo",rein,"sec")}
 function rein(){datos=[];L.innerHTML="";ir("inicio")}

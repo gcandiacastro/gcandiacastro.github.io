@@ -3,7 +3,8 @@ GCC Ingenieria - sitio para GitHub Pages
 1. Sube TODO el contenido de esta carpeta a la raiz del repositorio
    gcandiacastro.github.io (reemplaza index.html).
 2. Compra gccingenieria.cl en nic.cl.
-3. En el DNS del dominio crea:
+3. En Cloudflare agrega el dominio y copia sus dos servidores de nombres
+   en tu cuenta de NIC Chile. Luego crea estos registros, en modo DNS only:
    A   @    185.199.108.153
    A   @    185.199.109.153
    A   @    185.199.110.153
