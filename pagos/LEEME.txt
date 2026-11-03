@@ -11,4 +11,3 @@ ACTIVAR EL PAGO EN LINEA (una sola vez)
    config.js, en checkoutUrl.
 
 NUNCA pegues el Access Token en config.js ni en GitHub.
-Si cambias un precio, cambialo en catalogo.js y en worker.js.

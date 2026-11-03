@@ -1,10 +1,5 @@
 /* Pieza de cobro para Cloudflare Workers.
    Secreto requerido: MP_ACCESS_TOKEN. Variable: SITIO (ej. https://gccingenieria.cl) */
-const PRECIOS = {
-  "tasacion-urbana": ["Tasación de vivienda o terreno urbano", 145000],
-  "estabilidad": ["Informe de estabilidad estructural", 210000],
-  "reserva-dom": ["Reserva de cálculo para regularización DOM", 210000]
-};
 const MIN = 10000, MAX = 5000000;
 function resp(obj, status, origen) {
   return new Response(JSON.stringify(obj), { status, headers: {
@@ -12,16 +7,11 @@ function resp(obj, status, origen) {
     "Access-Control-Allow-Methods": "POST, OPTIONS", "Access-Control-Allow-Headers": "Content-Type" } });
 }
 export function armarItems(lista) {
-  if (!Array.isArray(lista) || !lista.length || lista.length > 10) throw new Error("Carrito inválido");
+  if (!Array.isArray(lista) || !lista.length || lista.length > 10) throw new Error("Pago inválido");
   return lista.map(i => {
-    if (i.id === "cotizacion") {
-      const n = String(i.cotizacion || ""), m = Number(i.monto);
-      if (!/^[A-Z0-9-]{4,24}$/.test(n) || !Number.isInteger(m) || m < MIN || m > MAX) throw new Error("Cotización inválida");
-      return { id: "cotizacion", title: "Cotización " + n, quantity: 1, unit_price: m, currency_id: "CLP" };
-    }
-    const p = PRECIOS[i.id], c = Number(i.cant);
-    if (!p || !Number.isInteger(c) || c < 1 || c > 5) throw new Error("Servicio inválido");
-    return { id: i.id, title: p[0], quantity: c, unit_price: p[1], currency_id: "CLP" };
+    const n = String(i.cotizacion || ""), m = Number(i.monto);
+    if (i.id !== "cotizacion" || !/^[A-Z0-9-]{4,24}$/.test(n) || !Number.isInteger(m) || m < MIN || m > MAX) throw new Error("Cotización inválida");
+    return { id: "cotizacion", title: "Cotización " + n, quantity: 1, unit_price: m, currency_id: "CLP" };
   });
 }
 export default {
