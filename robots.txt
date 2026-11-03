@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://gccingenieria.cl/sitemap.xml

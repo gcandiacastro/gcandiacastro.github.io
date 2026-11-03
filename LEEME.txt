@@ -1,0 +1,14 @@
+GCC Ingenieria - sitio para GitHub Pages
+
+1. Sube TODO el contenido de esta carpeta a la raiz del repositorio
+   gcandiacastro.github.io (reemplaza index.html).
+2. Compra gccingenieria.cl en nic.cl.
+3. En el DNS del dominio crea:
+   A   @    185.199.108.153
+   A   @    185.199.109.153
+   A   @    185.199.110.153
+   A   @    185.199.111.153
+   CNAME www gcandiacastro.github.io
+4. GitHub > Settings > Pages > Custom domain: gccingenieria.cl
+   Luego activa Enforce HTTPS.
+5. Para cobrar en linea sigue pagos/LEEME.txt.
