@@ -1,17 +1,14 @@
-/* Si cambias un precio aquí, cámbialo también en pagos/worker.js */
 const CATALOGO = [
-  { id:"tasacion-urbana", tipo:"compra", area:"Tasación", nombre:"Tasación de vivienda o terreno urbano", precio:145000,
-    detalle:"Visita, comparables de mercado e informe con valor comercial en UF.", incluye:["Una propiedad urbana","Visita en el Gran Concepción","Informe firmado por tasador MINVU N°919"] },
-  { id:"estabilidad", tipo:"compra", area:"Estructuras", nombre:"Informe de estabilidad estructural", precio:210000,
-    detalle:"Inspección y verificación de una vivienda o ampliación, con conclusiones y recomendaciones.", incluye:["Una vivienda o ampliación","Inspección en terreno","Informe firmado"] },
-  { id:"reserva-dom", tipo:"compra", area:"Estructuras", nombre:"Reserva de cálculo para regularización DOM", precio:210000,
-    detalle:"Abono inicial para memoria de cálculo y planos de una ampliación menor. El saldo se define al revisar tus planos.", incluye:["Revisión de antecedentes","Cotización final por escrito","Abono descontado del valor total"] },
-  { id:"tasacion-especial", tipo:"cotizar", area:"Tasación", nombre:"Tasación rural, comercial o judicial", desde:"Desde 6 UF",
-    detalle:"Estudio de mercado e informe según el destino de la propiedad o del encargo." },
-  { id:"calculo", tipo:"cotizar", area:"Estructuras", nombre:"Memoria de cálculo y planos de estructura", desde:"Según m²",
-    detalle:"Viviendas, galpones, plataformas y estructuras menores. Incluye patrocinio DOM cuando corresponde." },
-  { id:"ito", tipo:"cotizar", area:"Inspección", nombre:"Inspección técnica de obra (ITO)", desde:"Según obra",
-    detalle:"Control de calidad, revisión de documentación y seguimiento para mandantes privados." },
-  { id:"peritaje", tipo:"cotizar", area:"Inspección", nombre:"Peritaje e informe de daños", desde:"Desde 5 UF",
-    detalle:"Inspección, registro fotográfico y presupuesto de reparación para seguros o juicios." }
+  {id:"calculo",hoja:"ing",dib:"calculo",nombre:"Memoria de cálculo y planos",detalle:"Viviendas y estructuras en hormigón, acero, madera o metalcom, con patrocinio DOM cuando corresponde."},
+  {id:"regularizacion",hoja:"ing",dib:"dom",nombre:"Regularización DOM",detalle:"Memoria y planos de estructura para ampliaciones por regularizar."},
+  {id:"galpon",hoja:"ing",dib:"galpon",nombre:"Galpones y plataformas",detalle:"Análisis sísmico y de viento, perfiles, fundaciones y planos."},
+  {id:"estabilidad",hoja:"ing",dib:"estabilidad",nombre:"Informe de estabilidad",detalle:"Inspección y verificación de una vivienda, ampliación o estructura existente."},
+  {id:"ito",hoja:"ing",dib:"ito",nombre:"Inspección técnica de obra",detalle:"Control de calidad, documentación y seguimiento para mandantes privados."},
+  {id:"revision",hoja:"ing",dib:"revision",nombre:"Revisión de proyectos",detalle:"Revisión y observaciones a proyectos estructurales de terceros."},
+  {id:"tas-vivienda",hoja:"tas",dib:"vivienda",nombre:"Vivienda o terreno urbano",detalle:"Visita, comparables de mercado e informe con valor comercial en UF."},
+  {id:"tas-rural",hoja:"tas",dib:"rural",nombre:"Propiedad rural",detalle:"Parcelas y predios, con estudio de mercado de la zona."},
+  {id:"tas-comercial",hoja:"tas",dib:"comercial",nombre:"Propiedad comercial",detalle:"Locales, oficinas y bodegas, según su uso y mercado."},
+  {id:"tas-judicial",hoja:"tas",dib:"judicial",nombre:"Tasación judicial",detalle:"Informe pericial para herencias, particiones y juicios."},
+  {id:"tas-danos",hoja:"tas",dib:"danos",nombre:"Informe de daños",detalle:"Registro fotográfico y presupuesto de reparación para seguros."},
+  {id:"tas-peritaje",hoja:"tas",dib:"peritaje",nombre:"Peritaje técnico",detalle:"Defectos y daños de construcción, con inspección e informe."}
 ];
