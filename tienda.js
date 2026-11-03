@@ -7,7 +7,7 @@ const CLAVE="gcc_solicitud";
 function leer(){try{const v=JSON.parse(localStorage.getItem(CLAVE));return Array.isArray(v)?v:[]}catch(e){return[]}}
 let carrito=leer();
 document.body.insertAdjacentHTML("beforeend",`<div class="velo" id="velo" hidden></div>
-<aside class="cajon" id="cajon" hidden aria-label="Mi solicitud"><header><h2>Mi solicitud</h2><button class="x" id="cerrar" type="button">Cerrar</button></header><div id="items"></div>
+<aside class="cajon" id="cajon" hidden role="dialog" aria-modal="true" aria-label="Mi solicitud"><header><h2>Mi solicitud</h2><button class="x" id="cerrar" type="button">Cerrar</button></header><div id="items"></div>
 <form id="fpago"><label for="pnom">Nombre<input id="pnom" required autocomplete="name"></label><label for="ptel">Teléfono<input id="ptel" required inputmode="tel" autocomplete="tel"></label><label for="pcor">Correo<input id="pcor" type="email" required autocomplete="email"></label><label for="pcom">Comuna<input id="pcom" required></label><label for="pmsg">Cuéntame más (opcional)<textarea id="pmsg" rows="2"></textarea></label><label class="chk"><input id="pok" type="checkbox" required><span>Acepto los <a href="terminos.html">términos y la política de privacidad</a></span></label><p class="err" id="perr" hidden></p><button class="btn wa" id="pbtn" type="submit">Enviar por WhatsApp</button><p class="nota" id="pnota"></p></form></aside>`);
 const hayPago=()=>carrito.some(i=>i.cotizacion);
 const soloPago=()=>carrito.length&&carrito.every(i=>i.cotizacion);
@@ -16,13 +16,13 @@ function pintar(){
  $("items").innerHTML=carrito.length?carrito.map((i,k)=>`<div class="item"><strong>${esc(i.nombre)}</strong><span>${i.monto?clp(i.monto):""}</span><button class="x" type="button" data-q="${k}">Quitar</button></div>`).join(""):'<p class="nota">Aún no agregas servicios.</p>';
  const on=!!CONFIG.checkoutUrl&&soloPago();
  $("pbtn").textContent=on?"Pagar en línea":"Enviar por WhatsApp";$("pbtn").className="btn "+(on?"sen":"wa");$("pbtn").disabled=!carrito.length;
+ document.querySelectorAll("[data-add]").forEach(b=>{const y=carrito.some(i=>i.id===b.dataset.add);b.textContent=y?"Agregado":"Agregar a mi solicitud";b.classList.toggle("hecho",y)});
  $("pnota").textContent=on?"Te llevaremos a Mercado Pago para completar el pago.":"Te respondo por WhatsApp con el valor y los pasos a seguir.";
 }
 function guardar(){try{localStorage.setItem(CLAVE,JSON.stringify(carrito))}catch(e){}pintar()}
-function abrir(){$("velo").hidden=false;$("cajon").hidden=false}
-function cerrar(){$("velo").hidden=true;$("cajon").hidden=true}
-function tarjetas(h){const c=$("cards");if(!c)return;c.innerHTML=CATALOGO.filter(p=>p.hoja===h).map(p=>`<article class="serv">${dib(p.dib)}<h3>${p.nombre}</h3><p>${p.detalle}</p><button class="btn sec" type="button" data-add="${p.id}">Agregar a mi solicitud</button></article>`).join("")}
-tarjetas(document.body.dataset.hoja);
+let origen=null;
+function abrir(){origen=document.activeElement;$("velo").hidden=false;$("cajon").hidden=false;$("cerrar").focus()}
+function cerrar(){if($("cajon").hidden)return;$("velo").hidden=true;$("cajon").hidden=true;if(origen&&origen.focus)origen.focus()}
 document.addEventListener("click",e=>{const d=e.target.dataset||{};
  if(d.add){const p=CATALOGO.find(x=>x.id===d.add);if(!carrito.some(i=>i.id===p.id))carrito.push({id:p.id,nombre:p.nombre});guardar();abrir()}
  if(d.q){carrito.splice(+d.q,1);guardar()}});

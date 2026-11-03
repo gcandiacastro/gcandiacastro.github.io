@@ -77,3 +77,8 @@ form{display:grid;gap:12px}label{display:grid;gap:5px;font-size:14px;font-weight
 @media(max-width:860px){.puertas,.portada .envase,.pres .envase{grid-template-columns:minmax(0,1fr)}.pres .envase{grid-template-columns:1fr 1fr 1fr}.pres h1{grid-column:1/-1}.puerta{min-height:0;padding:30px 18px!important}.puerta svg{max-height:200px}.tira{grid-template-columns:minmax(0,1fr)}.barra nav{display:flex;gap:12px;order:3;width:100%;padding-bottom:8px;overflow-x:auto}.barra .envase{flex-wrap:wrap;gap:6px 14px;padding-top:8px}.portada .envase{gap:18px;padding-block:32px}}
 @media(prefers-reduced-motion:reduce){.serv,.puerta svg{transition:none}}
 section.bot{padding:0}.op.sec:hover{background:var(--papel);color:var(--tinta)}
+.btn.hecho{background:var(--tinta);color:#fff}
+.faq{display:grid;gap:8px;max-width:820px}.faq details{background:var(--blanco);border:1px solid var(--linea);padding:13px 16px}.faq summary{font-weight:600;cursor:pointer}.faq p{margin:8px 0 0;color:var(--gris)}
+.nota a,.chk a{color:var(--azul)}
+.barra nav a:focus-visible,.marca:focus-visible{outline-color:var(--senal)}
+@media(max-width:860px){.dato b{font-size:27px;white-space:nowrap}.dato span{font-size:13px}.pres .envase{gap:12px}}

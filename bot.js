@@ -15,7 +15,7 @@ const FLUJO={
  f3:{t:"Germán Candia Castro, ingeniero civil UCSC, tasador MINVU N°919 y consultor MOP 3ª Categoría."},
  f4:{t:"Para tasar: dirección o rol de la propiedad. Para calcular: planos de arquitectura y mecánica de suelos si existe."}
 };
-document.body.insertAdjacentHTML("beforeend",`<div class="flotas"><a class="flota wa" href="https://wa.me/${CONFIG.whatsapp}">WhatsApp</a><button class="flota as" id="botAbrir" type="button">Asistente</button></div>
+document.body.insertAdjacentHTML("beforeend",`<aside class="flotas" aria-label="Contacto rápido"><a class="flota wa" href="https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent("Hola Germán, vi su página y quiero cotizar.")}">WhatsApp</a><button class="flota as" id="botAbrir" type="button" aria-expanded="false" aria-controls="bot">Asistente</button></aside>
 <section class="bot" id="bot" hidden aria-label="Asistente"><header><span><b>Asistente GCC</b><small>Respuestas automáticas</small></span><button class="x" id="botCerrar" type="button">Cerrar</button></header><div class="log" id="botLog" aria-live="polite"></div><div class="ops" id="botOps"></div><form id="botF" hidden><input id="botIn" aria-label="Tu respuesta" autocomplete="off"><button class="btn sen" type="submit">Enviar</button></form></section>`);
 const L=document.getElementById("botLog"),O=document.getElementById("botOps"),F=document.getElementById("botF"),I=document.getElementById("botIn"),B=document.getElementById("bot");
 let datos=[],actual="inicio";
@@ -23,7 +23,7 @@ const dice=(t,c)=>{const d=document.createElement("div");d.className="m "+c;d.te
 const op=(t,f,c)=>{const b=document.createElement("button");b.type="button";b.className="op "+(c||"");b.textContent=t;b.onclick=f;O.appendChild(b)};
 function ir(k){actual=k;O.innerHTML="";F.hidden=true;
  if(k==="fin")return fin();
- if(k==="pag"){dice("Puedes pagar con el número de tu cotización.","b");op("Ir a pagar",()=>{location.href="index.html#pagar";B.hidden=true});op("Volver al inicio",rein,"sec");return}
+ if(k==="pag"){dice("Puedes pagar con el número de tu cotización.","b");op("Ir a pagar",()=>{B.hidden=true;location.href="index.html#pagar"});op("Volver al inicio",rein,"sec");return}
  const n=FLUJO[k];dice(n.t,"b");
  if(n.in){F.hidden=false;I.value="";I.focus();return}
  if(!n.o){op("Hablar con Germán",()=>wa("Hola Germán, tengo una consulta."));op("Otra pregunta",()=>ir("faq"),"sec");return}
@@ -32,7 +32,10 @@ function ir(k){actual=k;O.innerHTML="";F.hidden=true;
 function fin(){const m="Hola Germán, quiero cotizar.\n"+datos.join("\n");dice("Listo. Revisa tu mensaje y envíalo por WhatsApp.","b");dice(m,"r");op("Enviar por WhatsApp",()=>wa(m));op("Empezar de nuevo",rein,"sec")}
 function rein(){datos=[];L.innerHTML="";ir("inicio")}
 F.addEventListener("submit",e=>{e.preventDefault();const v=I.value.trim();if(!v)return;dice(v,"u");const n=FLUJO[actual];datos.push(n.g+": "+v);ir(n.s)});
-document.getElementById("botAbrir").onclick=()=>{B.hidden=false;if(!L.children.length)ir("inicio")};
-document.getElementById("botCerrar").onclick=()=>{B.hidden=true};
+const A=document.getElementById("botAbrir");
+const cierra=()=>{if(B.hidden)return;B.hidden=true;A.setAttribute("aria-expanded","false");A.focus()};
+A.onclick=()=>{B.hidden=false;A.setAttribute("aria-expanded","true");if(!L.children.length)ir("inicio");document.getElementById("botCerrar").focus()};
+document.getElementById("botCerrar").onclick=cierra;
+document.addEventListener("keydown",e=>{if(e.key==="Escape")cierra()});
 if(document.getElementById("abrirBot"))document.getElementById("abrirBot").onclick=()=>document.getElementById("botAbrir").click();
 })();
