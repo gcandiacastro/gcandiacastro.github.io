@@ -1,0 +1,14 @@
+ACTIVAR EL PAGO EN LINEA (una sola vez)
+
+1. Mercado Pago: entra a mercadopago.cl/developers, crea una aplicacion
+   con Checkout Pro y copia el Access Token de produccion.
+2. Cloudflare: crea una cuenta gratuita. Workers & Pages > Create > Worker.
+   Pega el contenido de worker.js y despliega.
+3. En el Worker > Settings > Variables:
+   - Secreto MP_ACCESS_TOKEN = tu Access Token
+   - Variable SITIO = https://gccingenieria.cl
+4. Copia la direccion del Worker (termina en .workers.dev) y pegala en
+   config.js, en checkoutUrl.
+
+NUNCA pegues el Access Token en config.js ni en GitHub.
+Si cambias un precio, cambialo en catalogo.js y en worker.js.
