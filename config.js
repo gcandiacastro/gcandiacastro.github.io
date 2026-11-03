@@ -4,7 +4,7 @@ const CONFIG = {
   // Mientras esté vacía, las cotizaciones se pagan coordinando por WhatsApp.
   checkoutUrl: "",
   // Pega aquí el enlace de tu página de Facebook para mostrar el botón.
-  facebook: "",
+  facebook: "https://www.facebook.com/profile.php?id=61580498820444",
   whatsapp: "56973338833",
   correo: "gcandiacastro@gmail.com"
 };
